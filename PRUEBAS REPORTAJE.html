@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Casa verde?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<link href="https://fonts.googleapis.com/css2?family=Gascogne+Serial&display=swap" rel="stylesheet">
+
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3f0d16;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100vw;
+            position: relative;
+            display: layout;
+background-color: #4c550f;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .aspect-ratio-wrapper {
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+.flourish-container {
+    width: 80%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start; /* Align charts to the start of the container */
+}
+
+        .flourish-embed-iframe {
+            width: 80%;
+            height: 80%;
+            display: block;
+            transition: transform 2s ease;
+            position: fixed;
+        }
+
+        .subtitles-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        
+
+        .flourish-embed {
+            display: none;
+            /* Hide all charts by default */
+            transition: opacity 0.5s ease;
+            /* Smooth transition for opacity */
+        }
+
+        .flourish-embed.active {
+            display: block;
+            /* Show the active chart */
+        }
+
+        .flourish-embed:first-child {
+            display: block;
+            /* Show only the first chart */
+        }
+
+        .textbox {
+            margin: auto;
+        }
+
+        .textbox-2{
+            position: absolute;
+            bottom: 120px;
+            left: 100px;
+            right: px;
+            top: 500px;
+            max-width: 500px;
+
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .textbox-3{
+            position: absolute;
+            bottom: 1500px;
+            left: 100px;
+            right: px;
+            top: 00px;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .nav-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            z-index: 1;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-arrows:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-arrow {
+            left: 10px;
+        }
+
+        .next-arrow {
+            right: 10px;
+        }
+        @font-face {
+  font-family: "GascogneSerialRegular";
+  src: url('webFonts/GascogneSerialRegular/font.woff2') format('woff2'), url('webFonts/GascogneSerialRegular/font.woff') format('woff');
+}
+.popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 80%;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="section" style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780617/IMG_9345_uxpqlz.jpg);">
+            <div class="content">
+                <h2 style="color: #f0f0f0; font-weight:bolder; font-size: 35pt;position:absolute;top:600px;font-family: 'GascogneSerialRegular';">Si los bosques pudieran hablar, ¿qué historias nos contarían?</h2>
+            </div>
+        </div>
+        <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780616/20221225054431_IMG_7612_1_kkgdhy.jpg);">
+
+                <h2 style="color: #f0f0f0; font-weight:bolder;">TíTULO</h2>
+                <div class="textbox">
+                    <p style="color: #f0f0f0;">Descripción</p>
+                    <div class="textbox"; style="position: relative;color: #f0f0f0;text-align: center;top: 250px";>
+                    <p style="color: #f0f0f0;text-align: center;top: 450px;">Natalia Bedoya Alcaraz, Sebastián Castro y Sebastián López Galvis</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780621/20230104060910_IMG_7766_ti3kyi.jpg);">
+                <div class="espacio" style="padding-left:700px;";> <iframe title="Porcentaje de bosque deforestado (2001-2022)" aria-label="Map" id="datawrapper-chart-M4L89" src="https://datawrapper.dwcdn.net/M4L89/12/" scrolling="yes" frameborder="0" style="width: 600px; border: none; height:610px" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+                </script>
+                <div class="textbox-2">
+                    <p style="position: absolute;top: -50px;width: 500px;font-size: 25px; text-align: justify;color: #fff;font-weight: 300;">En Antioquia hay 7 municipios que han perdido <b style="font-weight: bold;">más de una cuarta parte de su bosque en los últimos 20 años</b>. Las regiones del <b style="font-weight: bold">Nordeste y Magdalena medio</b> son las zonas con cifras más críticas de deforestación en este periodo de tiempo.</p>
+                </div>
+                    <div class="textbox-3">
+                        <p style="text-align: center;width: 500px;font-size: 80px; text-align: start; font-weight:bold; color: #2d3329; font-family: 'GascogneSerialRegular';">¿Nuestra casa sigue siendo verde?</p>
+
+                    
+                </div>
+    </div>
+    </div>
+
+    <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780621/20230104060910_IMG_7766_ti3kyi.jpg);">
+            <div class="content">
+                <div class="subtitles-container">
+                    <div class="subtitle-container">
+                        <h3 style="color:#680a22; text-shadow:
+                        -1px -1px 0 #fff,
+                        1px -1px 0 #fff,
+                        -1px 1px 0 #fff,
+                        1px 1px 0 #fff;" class="percentage">-34,7%</h3>
+                        <p style="font-weight: bold; color: #fff;" class="subtitle">REMEDIOS</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <h3 style="color:#680a22; text-shadow:
+                        -1px -1px 0 #fff,
+                        1px -1px 0 #fff,
+                        -1px 1px 0 #fff,
+                        1px 1px 0 #fff;" class="percentage">-30,65%</h3>
+                        <p style="font-weight: bold; color: #fff;" class="subtitle">SEGOVIA</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <h3 style="color:#680a22; text-shadow:
+                        -1px -1px 0 #fff,
+                        1px -1px 0 #fff,
+                        -1px 1px 0 #fff,
+                        1px 1px 0 #fff;" class="percentage">-27%</h3>
+                        <p style="font-weight: bold; color: #fff;" class="subtitle">YONDÓ</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <h3 style="color:#680a22; text-shadow:
+                        -1px -1px 0 #fff,
+                        1px -1px 0 #fff,
+                        -1px 1px 0 #fff,
+                        1px 1px 0 #fff;" class="percentage">-26,7%</h3>
+                        <p style="font-weight: bold; color: #fff;" class="subtitle">VEGACHÍ</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <h3 style="color:#680a22; text-shadow:
+                        -1px -1px 0 #fff,
+                        1px -1px 0 #fff,
+                        -1px 1px 0 #fff,
+                        1px 1px 0 #fff;" class="percentage">-25%</h3>
+                        <p style="font-weight: bold; color: #fff;" class="subtitle">PUERTO BERRIO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707791887/20230315005434_IMG_8296_flgr47.jpg);">
+            <div class="content">
+                    <iframe src='https://flo.uri.sh/visualisation/16552053/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width: 70%; height: 60vh; position: absolute;bottom: 250px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                </div>
+                <div class="textbox-2"; style="position: absolute; left: 400px;right: 200px; top:550px;font-size: 20px; text-align: justify;color: #fff;font-weight: 300;max-width: 600px;">
+                    <p>Remedios, Segovia, Yondó, Puerto Berrio y Vegachí encabezan esta la lista y hacen parte de los 28 municipios de Antioquia identificados en los Núcleos de Alta Deforestación (NAD) del país según el Plan Estratégico del Programa para el Control de la Deforestación y Gestión Sostenible de los Bosques en Antioquia. Uno de los núcleos es la Serranía de San Lucas que se extiende por los tres municipios más deforestados.</p>
+                
+            </div>
+        </div>
+
+        <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780620/20230314231659_IMG_8238_sgsteo.jpg);">
+            <div class="content">
+                <div class="subtitles-container">
+                    <div class="subtitle-container">
+                        <p class="subtitle">UdeA</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <p class="subtitle">Medellín</p>
+                    </div>
+                    <div class="subtitle-container">
+                        <p class="subtitle">Bogotá</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780617/IMG_9345_uxpqlz.jpg);">
+            <div class="content" style="position: center;">
+                <h2 style="color: black; font-weight:bolder; font-size: 20pt;position:absolute;bottom:650px;">¿Qué nos muestran las tendencias?</h2>
+                <div class="flourish-container">
+                    <iframe src='https://flo.uri.sh/visualisation/16723365/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                    <iframe src='https://flo.uri.sh/visualisation/16723357/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                    <iframe src='https://flo.uri.sh/visualisation/16723348/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                    <iframe src='https://flo.uri.sh/visualisation/16723341/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                    <iframe src='https://flo.uri.sh/visualisation/15834790/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                </div>
+                <div class="nav-arrows prev-arrow" onclick="changeChart(-1)">&#10094;</div>
+                <div class="nav-arrows next-arrow" onclick="changeChart(1)">&#10095;</div>
+            </div>
+        </div>
+        
+            
+
+        <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780613/IMG_0280_njcwxu.jpg);">
+            <div class="content">
+                <div class="long-text">
+                    Me gustaría que las palabras realmente expresaran la belleza, pero estas tienen todavía muchas formas limitadas. Han llegado a agradarme algunas que nos hemos inventado para darle, al menos, existencia comprensible y compartida entre nuestra propia especie. Por ejemplo, hemos creado la palabra “árbol” para nombrar a un ser vivo bellísimo que tiene una capacidad enorme de relacionarse y hacerse posible a sí mismo, ¿Cuál es la diferencia entre todos los otros seres que hacemos lo mismo? 
+
+Hemos establecido también que existe algo intangible, propio de cada ser humano, que se llama “imaginación”. Ahí las pálidas imágenes de un mapa y un rostro se mezclan con la voz de Gustavo y le crean una “casa” - otra palabra con una capacidad enorme de sentidos para hacerse posible a sí misma -  a la historia que voy a escribir. 
+
+
+
+Ostentosamente anarquista
+Al sur del Valle de Aburrá, concretamente en Itagüí, vivió la infancia Gustavo Adolfo Palacio, cuando el valle todavía hablaba un poco a valle, y se ordeñaba y se tenían marranos y perros, y los bellísimos árbol-es eran difíciles de contar. Para ese entonces el deseo natural e instintivo de cuidar, que había heredado naturalmente por ser un hombre humano, se combinaba con el de su padre, otro hombre humano cuidador, para repetirle en su cabeza: los animales no se maltratan. Esa relación básica en tiempo pasado no le advertiría a Gustavo que después haría parte del Ejército de Liberación Nacional (ELN), de la Juventud Communista de Colombia (JUCO), de las Fuerzas Armadas Revolucionarias de Colombia (FARC), de un proceso de paz y de un Espacios Territorial de Capacitación y Reincorporación (ETCR) en la vereda Carrizal al nordeste del municipio de Remedios, Antioquia. 
+
+“La primera vez que me metí así, como a mover armas y a conspirar y a tirarle a la policía o al ejército, fue cuando era un niño. A los doce años me metí con el ELN, hasta los catorce y medio que mataron al comandante que nos dirigía. Ahí como conocía la JUCO comencé a acercarme y me fui metiendo; por esas mismas circunstancias empezó a sonar un proceso de paz con las FARC y me empezó a tramar más el tema de la paz y el tema político con la JUCO. Terminé en la  Unión Patriótica y los diálogos que habían con las FARC, pero cuando la masacre de la JUCO, la masacre de Segovia, cuando se dió toda esa oleada de violencia, esa matazón de líderes sociales, sindicalistas, se me cerraron las puertas y  decidí ingresar al cuarto frente…para quedarme en la montaña” - me cuenta.
+
+¿Qué puedo decir yo? Es así, nadie sabe lo que esconde el futuro ni la tierra negra, amarilla, metálica, más adentro de ella misma, más adentro de nosotros. 
+
+Cuando apenas estaba en las filas pensó en su nombre. Se quería llamar Camilo Ernesto, por Camilo Torres y por Ernesto el Che Guevara. Esas palabras también me gustan, esas en las que nos autoreferenciamos. De cualquier modo no se llamaría así. El “encargado de las hojas de vida”, Aldruar José Octavio, le dijo que no se podía, que ya existían en el registro un Ernesto Danilo y un Camilo, que se llamara Teófilo. Gustavo le dijo “¿¡Cómo!?” y él le respondió “Sí, Teófilo”. Luego Gustavo le dijo “Ay no, ese nombre tan feo”, pero “el encargado de las hojas de vida” le empezó a hablar de Teófilo Forero, un líder comunista, y le insistió tanto que él aceptó. 
+
+Más adelante leyó la historia de un personaje de Santander que le gustó mucho, era Vicente Rojas Lizcano, más conocido por su seudónimo Biófilo Panclasta. Ese hombre tan “anarquista, particular y loco que estuvo en la insurrección soviética, que intentó matar al rey de España y la reina de Inglaterra”, en el que encontró inspiración, no sólo compartía con su nuevo alias un parecido fonético, sino que también le regalaría su apellido.
+
+Al principio, cuando dije que esta historia tenía casa en mi imaginación no quise decir también que fuera mentira; sino que a Teófilo Panclasta, que es también Gustavo Palacio, solo le he visto una vez, y todo lo que me cuenta lo escucho una o dos mientras cierro los ojos y creo imágenes verdosas de bosques antioqueños, y guardo la firmeza con la que se camina en la oscuridad, aquí en mi mente y en mi corazón. 
+
+No sé si Gustavo dejó de ser Gustavo cuando se nombró Teófilo Panclasta, no sé si dejó de ser Teófilo Panclasta cuando se volvió un firmante y todos de nuevo lo llamaron Gustavo; sólo sé que ese espacio de diferencia importa si veo en perspectiva la historia de su vida.
+
+
+
+El hogar
+En sus treinta y dos años como miembro de la guerrilla, de 1985 a 2017, recorrió muchos lugares, pero sobre todo estuvo en la Serranía de San Lucas. Esos muchos lugares fueron, por ejemplo, el occidente de Boyacá, el Norte de Santander, Ocaña, Arauca y Catatumbo. Pero la serranía, que está entre Antioquia y Bolívar, que es una forma específica de expresión geográfica en nuestro planeta: un conjunto de montañas, dentro de otro conjunto más grande de montañas; se constituyó en su hogar más permanente e hizo que su relación con la ruralidad y con la naturaleza fuera otra. 
+
+“Una de las cosas que me producen nostalgia y me parecen bonitas, es saber que yo me levantaba por la mañana, me cepillaba los dientes, y al lado estaba el otro compañero: “Quiubo parcero,cómo amaneció” y nos cepillamos juntos, o sea, el no tener intimidad.  En cierta medida a mí eso me parecía muy hermoso. Es esa relación entre nosotros y el agua, el baño, hombres y mujeres. Esas relaciones así, tan naturales, tan silvestres, ese rollo de de hacer la camita juntos, de que una hoja de plátano nos servía como colchón, de aprender cómo hacer una mesa para comer. Esas relaciones con la naturaleza de hacer nuestros campamentos bonitos, hechos para ocho días y terminabamos tres años ahí (...) Entonces la selva, la naturaleza se constituía en amigo, en protección, en comida, en amor, en sexo, en reproducción, en los niños que nacían en un campamento, en lo que uno sólo podía ver porque por ahí no iba a entrar nadie más, quién sabe cuándo más iba a pasar un ser humano por ahí. Eso era hermoso”. 
+
+Entonces, pienso cómo sería ser un niño arrullado por el canto de los pájaros y la niebla montañosa. Pienso en irme de Itagüí hasta esa sierra y elegirla para vivir. Pienso en esa conexión selva-hombre-mujer-cosas desconocidas, vuelvo al pálido mapa mental que tengo aprendido del departamento de Antioquia, y en la gran casa de mi imaginación le abro una habitación al dolor que me causa, que ese conjunto de montañas tan amado por Gustavo, sea también uno de los Núcleos de Alta Deforestación (NAD) en mi país. No olvido que por los bosques abundan bellezas que yo todavía no soy capaz de nombrar. No olvido que las historias son todas crudezas, noblezas, asombros sobre nuestra propia vida. 
+
+
+
+Un interés particular
+Para Gustavo, el cuidado ambiental no es algo improvisado como firmantes de paz ahora, ni en el pasado como organización. Mucho antes de que escucharan que eso existía, que había una parte de los humanos dedicando su esfuerzo a cuidar su casa, ya ellos tenían una larga experiencia en temas de normas “comunitarias e insurgentes” que se le parecían.
+
+“Era una intensa relación con la selva, con poblaciones que habían sido desplazadas de otras regiones, con antecedentes históricos muy profundos de violencia, pero siempre en la guerrilla había una serie de recomendaciones para tratar de no destrozar todo cuanto hubiera a nuestro alrededor sino de preservar y de guardar nuestros bosques”. 
+
+En las FARC se prohibió la caza y se incentivó la producción propia de cerdos y pollos para el consumo. También, en común con el ELN y las organizaciones campesinas se llegaron a acuerdos comunes: cuando se conformó la Coordinadora Guerrillera Simón Bolívar en 1987, unificaron criterios para no maltratar a la población, para el control del uso de explosivos en los sitios de pesca, para el control del mercado o la caza furtiva, entre otros. 
+
+Eran normas comunitarias, “criterios que eran para el agua, para el pescado, para para las cosechas, para la coca” que derivaron en la creación de la llamada Línea Amarilla o Frontera Agrícola.
+
+“Salíamos cinco o seis guerrilleros de las FARC, cinco o seis guerrilleros del ELN, y llegábamos de vereda en vereda, convocando a la Junta de Acción Comunal, y con ellos nos íbamos hasta los sitios de reserva y los marcábamos”. 
+
+Juntos, que es otra palabra que me gusta, trazaban una línea con pintura amarilla para establecer el “bueno, de aquí para allá esto es reserva” y los árbol-es, en la textura frondosa y ahora iluminada de su corteza, guardaban esa señal: ninguno debía tumbar esa montaña a excepción de una urgencia. 
+
+“La extracción de los recursos tenía que ser bajo criterios no extractivistas sino de carácter de emergencia, si esas tres partes se ponían de acuerdo, se permitía, durante una cantidad de tiempo, tratar de extraer lo que se iba a extraer para poder hacer una casa, para poder recuperar el ganado que se ahogó o cositas así, y ya. Eso generó la protección de 900mil hectáreas iniciales, ahorita quedan por ahí unas 300 o 400mil”. 
+
+Luego, como ha venido siendo desde hace tiempo, la tierra empezó a gritar más fuerte, a hablarnos a través de la furia del fuego, de la resequedad, de la conquista abundante del agua, y el tema se hablaba con formalidad y fueron encontrando también, los hacedores de la guerra, la capacidad de verla y pensarla así: “guardar la reserva por derecho, por derecho a vivir, por derecho a la vida”. 
+
+
+Existir en el error
+Si la guerra es el error es una discusión infinita, parcial, y estoy de acuerdo con Patricia Nieto cuando dice que “convierte el destino de los hombres en un laberinto”. Por ejemplo, a las normas “comunitaria e insurgentes” que construyeron “juntos” las FARC y el ELN con las comunidades campesinas en la serranía -amada e imaginada- de San Lucas, habría que agregarles algo más que Gustavo reconoce: 
+
+“Nosotros aceptamos que para conseguirnos esa libra de oro con la que compramos esos fusiles, esas ametralladoras, tuvimos que hacer eso. Nosotros tuvimos que talar árboles para hacer búnkeres, tuvimos que tumbar cosas para hacer armas, en fin, lo que fuera. Nosotros para la economía de guerra tuvimos que hacerle daño al medio ambiente (...) mire, si nosotros somos los primeros en dar ejemplo pues cumplimos el propósito, todos nos equivocamos” - me dice. Todos hacemos lo mejor y lo peor, y es un laberinto. 
+
+Para repararlo estudiaron de qué manera cabían ellos, todos sus nombres, todos sus cuerpos sin fusil, en una palabra de tres letras que es muy confusa: PAZ; y cómo podían continuar y dejar como herencia lo que hacían por cuenta propia desde la guerra, en nuevos procesos de resistencia amigables y protectores del medio ambiente, en caso de que esa palabra fuera posible.  
+
+Después de considerarlo colectivamente, decir sí, y firmar los Acuerdos de Paz en el 2016,  empezaron, de nuevo, a estudiar de qué manera ellos, todos sus nombres, todos sus cuerpos sin fusil y ahora sus propuestas, cabían en lo que antes se llamó Zona Veredal Transitorial de Normalización, hoy el ETCR de Carrizal. Así, ese tema, que resultaba ser sensible para las y los desmovilizados, empezó a hacer parte de los Trabajos, Obras o Acciones Reparatorias (TOAR) en su compromiso con la Justicia Especial de Paz (JEP).  
+
+Eso incluía una culpa compartida y también una declaratoria: el medio ambiente es víctima del conflicto armado. La culpa, que es uno de los sentimientos más horribles de sentir, tampoco es el error, ¿qué de malo tiene lamentarnos, explorar las raíces, querer cambiar el pasado? El error es volver insistentemente a la historia de este país violento y creer que no hacemos parte de nada de lo que encontramos ahí.
+
+
+
+
+                </div>
+            </div>
+        </div>
+                
+
+    <div class="section" style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780613/IMG_0280_njcwxu.jpg);">
+        lantar ideas
+        Van tres campamentos y un pre-campamento en el ETCR de Carrizal, estos han sido en 2017, 2018, 2019 y 2020 respectivamente. Desde el primero se crearon tres banderas, tres mesas técnicas de debate y discusión: Reforma Rural Integral, Universidad Campesina y Popular y Restauración Ambiental; y se está trabajando, como dice Gustavo, en una cuarta bandera que es la de Género. 
+        
+        El evento se convoca interinstitucionalmente con el aval de Naciones Unidas (ONU), las alcaldías municipales de Segovia y Remedios y las organizaciones sociales del territorio. Personas como usted y como yo, podemos asistir a esa “universidad de cuatro días”, aunque tardaríamos uno en llegar y otro en salir.
+        
+        Juntos, que repito, es una palabra que me gusta, se plantearon el concepto del medio ambiente como un concepto más allá de lo sólo vivo. Eso les permitió proyectar la mesa ambiental como una mesa de “restauración”. Restauración ambiental, restauración ambiental, restauración ambiental. Suena bien, son dos palabras que se abrazan. De esas dos palabras que se abrazan nacieron otras: Siembra tu árbol por la paz, por ejemplo, que es un ejercicio de memoria que no sólo se vive durante los campamentos.
+        
+        “Estamos hablando de la restauración ambiental, no es la reforestación, porque la reforestación nos genera unas campañas masivas que lo que demuestran en la práctica es que mueren muchos árboles porque no exige el cuidado. Yo sé que la siembra de árboles para estos eventos es simbólica, pero lo que nos interesa es que no sea a la carrera, preferimos más bien hacer un censo de las personas que van, adecuamos los hoyos, colocamos el material orgánico apropiado, escogemos zonas que se puedan revisar para el siguiente campamento y así. Hay unos diseños, unas recomendaciones y estudios previos sobre los tipos de vegetación que tenemos y eso nos ayuda a ir buscando nuevas prácticas económicas que sostengan la restauración a largo tiempo., Hhemos aprendido de las propuestas restaurativas que están pasando, estamos viendo la posibilidad de adaptar especies a zonas con mayor sombrío de lo normal para para tener más producción, aprendiendo, pero siempre actuando por la paz”. 
+        
+        
+        
+        Re-inventar-nos
+        He abonado muchos tipos de plantas, cebollas, zanahorias, fresas, tomates, árboles de guayaba, pencas, cilantro, mosteras deliciosas, en fin, muchas. Muchas veces lo he hecho bien, y otras lo he hecho mal. Pero sólo he sembrado un árbol en toda mi vida y en efecto, ese Guayacán murió. 
+        
+        A ese árbol yo le había puesto el nombre de “Nini” por un personaje de un libro que me gustaba mucho: El último encuentro de Sándor Márai. El día que lo sembré, mis padres, mis hermanos y mis sobrinos hicieron lo mismo. Yo vivía en la ciudad y no podía saludarlo, regarlo, deshiervarlo, y aunque fuera en la finca de todos, nos faltó prever que ninguno estaría para salvarlo. Concuerdo con Gustavo, el ejercicio reflexivo sobre la siembra es fundamental para la vida. 
+        
+        Los nombres que tenían los árboles sembrados en Siembra tu árbol por la paz al principio, tenían que ver exclusivamente con la guerra y el dolor de la muerte, “nos planteamos que la siembra fuera un monumento vivo a las víctimas, hicimos un ejercicio de memoria y se hizo la selección de compañeros, amigos que habían caído en combate, buscábamos las coordenadas de las fosas, en común acuerdo con unidades, finqueros, acordabamos sembrar allí”. Entonces esas zonas empezaban a ser delimitadas como zonas de reserva, para que no fueran taladas sino que se mantuvieran así, lo que es para mí una especie de Línea Amarilla otra vez, pero distinta. 
+        
+        También llevaron estos árboles el nombre doloroso de embarazos perdidos y de perros muertos por desnutrición. El ejercicio reflexivo de la maternidad y el bienestar animal también es fundamental para la vida. 
+        
+        Después, los niños empezaron a cambiar esa dinámica y a nombrarlos con palabras que a mí me hacen gracia. Llegaron diciendo que a este lo iban a llamar “el cachaco”, a este otro “el boyaco”, a este “el pastuso”, “loquita”, “arcoiris” y así, de las lecturas favoritas de sus mentes le dieron un aire más liviano al asunto.
+        
+        Gustavo me dice: “Entonces mire como es de particular, tiene un elemento indiscutible de memoria, pero también tiene un elemento que es simbólico a armonía, a futuro, a vida, no está solamente entregado a la memoria del mártir, del sufrimiento, sino que también tiene un legado a la memoria de la esperanza, de los colores, de nuestras regiones, de nuestras diferencias”. 
+        
+        Me pregunto si cuando sembré mi Guayacán, sembré un árbol muerto o un árbol vivo; si sembré un dolor con amor o sembré un dolor con dolor, o si simplemente, sembré sin darme cuenta de la promesa que se mueve primitiva cuando unas manos de humano tocan la tierra.
+        
+        
+        
+        Construir un mundo diferente
+        Siembra tu árbol por la paz, y en general, el trabajo colectivo y organizativo que los firmantes están proponiendo en Carrizal, es la apuesta por “un espacio diferente al de la violencia para poder encontrar las transformaciones”. 
+        
+        “Como en el Acuerdo de Paz decidimos que todo es transversal, nuestro proyecto se enmarca así, hacia la resignificación de las relaciones humanas y las relaciones con la vida, con los seres vivos, en el sentido de lo masculino, de lo femenino, en el sentido de enriquecer ese debate sobre el medio ambiente. Es un proceso de deconstrucción muy autocrítico. No liderado a partir de un político, sino que nosotros, a partir de ese evento, cuando declaramos al medio ambiente víctima del conflicto, entendimos que para reparar el conflicto, también hay que reparar las situaciones de los seres humanos en ese lugar, en sus territorios”. 
+        
+        Como lo arrojaron los datos de esta investigación, Remedios y Segovia son dos de los municipios con los índices más críticos de deforestación en Antioquia. La serranía de San Lucas, es sólo uno de los 28 NAD identificados en el departamento según el Plan Estratégico del Programa para el Control de la Deforestación y Gestión Sostenible de los Bosques en Antioquia. Ese es un dato impactante dependiendo de qué tan vivo siga nuestro deseo natural e instintivo de cuidar, que heredamos naturalmente, como Gustavo y como su padre. Para él, la problemática de la deforestación ha crecido desde la desmovilización en 2016: 
+        
+        “Estos últimos años de proceso de los diálogos de paz, dejación de armas e implementación del acuerdo, dejaron a los territorios con un vacío de autoridad ambiental que éramos las FARC, el ELN quedó pero debilitado, y no tienen todavía la capacidad de recoger el legado que se había construído.” 
+        
+        Algunos medios expertos como Mongabay han estudiado esa posibilidad; las investigaciones han arrojado que en efecto, después de los diálogos con las FARC, además de las múltiples representaciones de poder que pueden ejercer las disidencias en los territorios; actividades como la ganadería extensiva, el acaparamiento de tierras, la siembra de cultivos ilícitos, la minería y la tala ilegal han incidido en gran medida desde que no están.
+        
+        Si comparamos los datos de pérdida de bosque de la plataforma Global Forest Watch con las cabezas de ganado registradas, los gramos de oro extraído y las hectáreas de coca sembradas, para los casos de Remedios y Segovia, nos damos cuenta de que siempre los picos de deforestación vienen acompañados de un pico seguido de uno de esos tres factores. Puede ser difícil de imaginar, pero ilustrativamente serían montañas que suben y bajan dependiendo de la anterior. 
+        
+        La secretaria de Desarrollo Social y Agropecuario de Remedios, que comparte conmigo el nombre - “Natalia” Jaramillo- dice que en la alcaldía del municipio, por ejemplo, no tienen ni siquiera un informe de deforestación, y concuerda con que su territorio “era un gran bosque frondoso” hasta la dejación de las armas de las FARC. De ahí en adelante, según ella, “los fenómenos atípicos de la violencia, las economías ilícitas y la usurpación del estado ha generado que el bosque sea el más afectado”. 
+        
+        Como los desmovilizados son humanos habitantes de ese territorio compartido, insisten en la implementación de una reforma rural que implique la formalización de esas actividades para poder normalizar, regular y hacerle una medida de choque al extractivismo que en gran medida ocurre en la ilegalidad.
+         
+        “Lo que se necesita es una revolución cultural en las zonas que están siendo explotadas por actividades de agricultura, de aserríos, de minería, de fumigaciones, por actividades de la guerra” - dice Gustavo - “se le culpa y se le castiga al minero por minar en esos territorios, sabiendo que no tienen opción de formalidad (...) Entonces nosotros, aún con todos nuestros orígenes políticos nos hemos planteado un proyecto en el, claramente, queremos que la gente participe pero que sea mucho más permanente, que no esté al vaivén de las democracias. Queremos ver un nivel de conciencia sobre lo que significa nuestra relación con la naturaleza y que podamos rescatar esos valores en los que había una reserva de los campesinos para los campesinos, y sólo es posible si se da la reforma rural e integral, que es una deuda aplazada.”
+        
+        Según eso, la relación con la naturaleza posibilita un uso más racional y planificado de los recursos naturales, para poner los pies en la tierra que es algo que se siente muy bien si uno lo hace descalzo. 
+        
+        “La reforma rural es la que puede colocar todo patas abajo, nos va a identificar el territorio, los habitantes, las bases económicas que se tienen.  Va a incentivar la permanencia de los campesinos en el territorio, que la gente aprenda a cobrar más caro el oro, la papa, a entender que es más valiosa la selva, las relaciones con la naturaleza, pero mientras todo aquí sea perseguido y criminal, la relación con la naturaleza va a ser de fastidio.”
+        
+        A mí se me hace muy difícil imaginar lo que es sentir fastidio por la naturaleza, porque se me hace muy fácil imaginar una amada serranía. Son dos cosas opuestas. Sin embargo, soy una humana que le hace casas a las historias y eso “difícil” va cambiando de aspecto cuando combino mi vida con la vida del mundo. Entonces, sí soy capaz de pensar en el cansancio de no tener profesores, de no tener salones, de no tener ni enfermeras, porque donde no hay hospitales pues no hay enfermeras. En el cansancio de ser perseguido, secuestrado. En el cansancio de pensar “ojalá pronto me pueda ir”, que es todo lo que Gustavo me cuenta que padecen muchas gentes.
+        
+        “Si vos estás en un lugar en el que para ganarse la vida tenés que entrar a un socavón pero sabés que en cualquier momento te van a tumbar el socavón, o vas a construir una casa donde sabés que hace cuatro o seis meses pasaron los paracos y quemaron las casas, tarde que temprano vas a hacer es un rancho de lo más sencillo porque en caso tal de que te toque salir corriendo no pierdes nada. Cuando se vuelve una cuestión tan endémica, una violencia cíclica, tenemos hombres y mujeres que sacan fortunas allá sólo para vivir en la miseria. Los campesinos vienen ya desarraigados, cada vez es más difícil conseguir quien conozca el nombre de aquel árbol, hacer un arroz, porque la gente se va volviendo obrera. Eso va generando una delimitación demográfica que no coincide con un arraigo territorial, sino con un estado de supervivencia.”
+        
+        También me da su apreciación sobre los esfuerzos estatales para el tema ambiental y como son unos esfuerzos que chocan con una esa realidad, en la que, quienes tienen el poder, no son ni el Estado ni la clase política, sino que hay, por encima de todo y de todas y todos, una superestructura económica en donde las grandes oligarquías controlan los poderes mediáticos, judiciales, legislativos y ejecutivos. “Más allá de pretender que el Estado va a lograr asumir los roles y el protagonismo que le corresponde, somos nosotros desde nuestras conciencias y desde nuestra lucha cotidiana, los que debemos colocar ese punto obligatorio. Si no hay una base académica, cultural, social que se convierta desde la lucha ambiental en un punto de presión y de reivindicación de estos derechos va a ser muy difícil , que los tengamos., Nno se puede volver utopía”.
+        
+        
+        
+        
+        Un poder escondido
+        Muchos humanos que no somos firmantes de paz también hemos firmado la paz, y además de confusa la llamaría también retadora. Los humanos “desarraigados” son ignorados y criminalizados, mientras otros humanos desconocidos, los cuestionan. Los humanos que antes eran guerrilleros nos cuentan a otros humanos, periodistas, que eso pasa, y hacemos la “paz” al tratar de comprender el laberinto. Una red. Una serie de tejidos invisibles, de poderes escondidos. 
+        
+        “Yo creo que si algo nos marcó en esa relación con la naturaleza ha sido la oportunidad  de que, para proteger las cosas, busquemos más consensos comunitarios y no tanto dictaduras locales. Después del proceso de paz, entra a jugar un papel muy importante la decisión autónoma de las comunidades, porque medir la voluntad, la conciencia, el acto moral, es difícil cuando las cosas se hacen por una orden militar. Cuando nosotros estábamos en las armas, pues, Teófilo estaba en las armas, era un comandante y llegaba con el fusil, multaba y durante unos días o unos meses se controla la quema, porque qué tal que llegue el comandante otra vez. Ahora que ya dejamos las armas, hay un empoderamiento de un nuevo tipo, lo digo en el caso personal, que no es ese empoderamiento que me daba el fusil o la orden que podía dar. A mí me da mucha alegría cuando  recuerdo cómo era el ETCR cuando llegamos y como es hoy, la cantidad de árboles que hemos sembrado, ya tengo más amigos y amigas con los que hablo de un tema común, que es un tema ahorita que es realmente importante. Creo que en la lucha armada no hubiéramos podido lograr lo que estamos logrando en estos momentos”. 
+        
+        Yo no sabía que tenía el poder escondido de hablar con un hombre que tiene -o tuvo- dos nombres distintos, la paz de una u otra manera abrió esa posibilidad. Gustavo me cuenta que siente afinidad por nosotros, por la juventud. Yo tengo un apetito voraz de ver la luz del sol sobre las cosas. Creo que piensa que no tengo más de dieciocho, pero es la verdad es que. tTengo veintitrés. A los ocho confundía los botones de oro con girasoles. Hoy creo en la belleza, intento explicarla, escribirla. Gustavo me responde al teléfono que si tuviera que elegir una palabra para describir su relación con la naturaleza, sería “amorosa”. Miren cuántas vocales tiene, cuántas consonantes, ¿no se les hacen formas muy limitadas a ustedes también?
+        
+    </div>
+
+    <div class="section"; style="background-image: url(https://res.cloudinary.com/dlkn4vhcj/image/upload/v1707780617/IMG_9345_uxpqlz.jpg);">
+        <div class="content" style="position: center;">
+            <h2 style="color: black; font-weight:bolder; font-size: 20pt;position:absolute;bottom:650px;">¿Qué nos muestran las tendencias?</h2>
+            <div class="flourish-container">
+                <iframe src='https://flo.uri.sh/visualisation/16796839/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+                <iframe src='https://flo.uri.sh/visualisation/16796558/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:70%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+        </div>
+        <div class="nav-arrows prev-arrow" onclick="changeChart(-1)">&#10094;</div>
+        <div class="nav-arrows next-arrow" onclick="changeChart(1)">&#10095;</div>
+    </div>
+    </div>
+
+    <script>
+                function showPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function hidePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        let currentChartIndex = 0;
+
+        function showChart(index) {
+            const iframes = document.querySelectorAll('.flourish-embed-iframe');
+            iframes.forEach((iframe, idx) => {
+                if (idx === index) {
+                    iframe.style.display = 'block';
+                } else {
+                    iframe.style.display = 'none';
+                }
+            });
+            currentChartIndex = index;
+        }
+
+        function changeChart(step) {
+    const iframes = document.querySelectorAll('.flourish-embed-iframe');
+    let newIndex = currentChartIndex + step;
+
+    if (newIndex < 0) {
+        newIndex = iframes.length - 1;
+    } else if (newIndex >= iframes.length) {
+        newIndex = 0;
+    }
+
+    // Hide all charts
+    iframes.forEach((iframe, index) => {
+        iframe.style.display = 'none';
+    });
+
+    // Show the selected chart
+    iframes[newIndex].style.display = 'block';
+
+    // Update current chart index
+    currentChartIndex = newIndex;
+}
+        
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect(); // Obtener los límites del elemento
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+
+        function animatePercentagesIfVisible() {
+            const percentages = document.querySelectorAll('.percentage');
+            console.log(percentages);
+
+            percentages.forEach(percentage => {
+                if (isInViewport(percentage)) { // Si el elemento es visible en la ventana
+                    const targetPercentage = parseFloat(percentage.textContent.replace(',', '.')); // Reemplaza la coma por un punto y luego convierte a número
+                    let currentPercentage = 0; // Valor actual del porcentaje
+
+                    // Función de animación para aumentar el porcentaje
+                    const animatePercentage = () => {
+                        if (currentPercentage !== targetPercentage) {
+                            if (currentPercentage < targetPercentage) {
+                                currentPercentage = Math.min(targetPercentage, currentPercentage + 0.01); // Aumenta gradualmente por 0.01
+                            } else {
+                                currentPercentage = Math.max(targetPercentage, currentPercentage - 0.01); // Disminuye gradualmente por 0.01
+                            }
+                            percentage.innerText = currentPercentage.toFixed(2) + "%"; // Actualiza el contenido del elemento de porcentaje y limita a dos decimales
+                            percentage.style.fontSize = (20 + (currentPercentage / targetPercentage) * 40) + "px"; // Ajusta el tamaño de la fuente basado en el progreso
+                            setTimeout(animatePercentage, 0.5); // Llama a la función nuevamente después de un breve retraso
+                        }
+                    };
+
+                    animatePercentage(); // Inicia la animación
+                }
+            });
+        }
+
+        function scrollToNext() {
+            const currentSection = document.querySelector('section.active');
+            const nextSection = currentSection.nextElementSibling;
+            if (nextSection) {
+                currentSection.classList.remove('active');
+                nextSection.classList.add('active');
+                nextSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            fitToSection: true,
+            fitToSectionDelay: 1000,
+            scrollBar: false,
+            navigation: false,
+            controlArrows: false,
+            slidesNavigation: false,
+            loopHorizontal: false,
+            scrollOverflow: false,
+            scrollOverflowReset: false,
+            touchSensitivity: 15,
+            keyboardScrolling: true, // Enable keyboard scrolling
+            animateAnchor: true,
+            recordHistory: true,
+            menu: '#menu',
+            anchors: ['reportaje', 'section1', 'subtitulos', 'graficos', 'tendencias'], // Add more anchors if needed
+            afterLoad: function (origin, destination, direction) {
+                animatePercentagesIfVisible();
+            },
+            afterRender: function () {
+                animatePercentagesIfVisible();
+            }
+        });
+    });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+    </script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+</body>
+
+</html>
